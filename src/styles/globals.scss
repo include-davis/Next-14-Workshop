@@ -1,0 +1,17 @@
+:root {
+    /* variables */
+    --text-light: #def6ff;
+}
+
+
+* {
+  font-family: var(--font-montserrat);
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
