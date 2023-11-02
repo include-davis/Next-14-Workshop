@@ -1,0 +1,23 @@
+[
+    {
+        "title": "Introduction to Next.js"
+    },
+    {
+        "title": "JSX - Mixing JS and HTML"
+    },
+    {
+        "title": "CSS Modules & SASS"
+    },
+    {
+        "title": "Components"
+    },
+    {
+        "title": "Mapping"
+    },
+    {
+        "title": "useState"
+    },
+    {
+        "title": "Rendering - Server Side vs Client Side"
+    }
+]

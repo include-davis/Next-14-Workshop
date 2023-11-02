@@ -1,0 +1,46 @@
+@use "src/styles/mixins";
+
+$gap: var(--small-spacer);
+$ncol: 4;
+$ncol-desktop: 3;
+$ncol-tablet: 2;
+$ncol-phone: 1;
+$box-height: 200px;
+
+.container {
+    display: flex;
+    flex-direction: column;
+    padding: var(--large-spacer);
+    width: 100%;
+
+    > h1 {
+        margin-bottom: var(--spacer);
+    }
+
+    .lesson_list {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: $gap;
+        width: 100%;
+    }
+
+    .lesson {
+        display: flex;
+        flex-direction: column;
+        padding: var(--small-spacer);
+        height: $box-height;
+        border: solid 2px black;
+        border-radius: var(--b-radius);
+        width: calc((100% - ($gap * ($ncol - 1))) / $ncol);   
+        @include mixins.sm-desktop {
+            width: calc((100% - ($gap * ($ncol-desktop - 1))) / $ncol-desktop);   
+        } 
+        @include mixins.sm-desktop {
+            width: calc((100% - ($gap * ($ncol-tablet - 1))) / $ncol-tablet);    
+        }
+        @include mixins.sm-phone {
+            width: calc((100% - ($gap * ($ncol-phone - 1))) / $ncol-phone);    
+        }
+    }
+}

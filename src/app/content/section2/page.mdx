@@ -1,0 +1,34 @@
+import CodeBlock from "@components/content/util/codeBlock";
+
+### JSX Files  
+&nbsp;
+
+React uses special types of js files called jsx files. These are effectively just javascript files that can accept html-like objects.  
+&nbsp;
+
+<CodeBlock>
+    ```jsx
+    // /src/components/example.jsx
+    // imports of libraries or custom components
+    import { useState } from "react";
+
+    // This is what page/component declarations look like
+    // They're just functions that we export with the default keyword
+    export default function Example({ data }) {
+
+        // javascript logic
+        console.log(data)
+        const length = len(data)
+
+        // return a html-like object
+        return (
+        <div>
+            <p>{data}</p>
+            <div>{len}</div>
+        </div>
+        );
+    }
+    ```
+</CodeBlock>
+
+Notice how by using curly brackets, we are able to inject javascript into our html structure.

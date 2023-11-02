@@ -1,0 +1,50 @@
+import CodeBlock from "@components/content/util/codeBlock";
+
+### CSS Modules & SASS
+&nbsp;
+
+To apply CSS, we use CSS modules. These are files named as [name].module.css rather than [name].css.  
+&nbsp;
+
+#### Why CSS Modules?
+&nbsp;
+
+CSS modules allow you to keep CSS rules locally scoped. This means that if someone names a class `.logo` and someone else uses the same className for their code, there will be no conflict. If we were to just import CSS regularly, the CSS would be imported globally which would cause these people's code to conflict and cause weird styling.
+
+
+<CodeBlock>
+    ```jsx
+    import styles from '@styles/stylingExample.module.css'
+
+    export default function StylingExample() {
+        // className rather than class (just a react/next.js thing)
+        return (
+            <p className={styles.outer_container}>
+                hello there
+            </p>
+        );
+    }
+    ```
+</CodeBlock>
+
+<CodeBlock>
+    ```css
+    /* stylingExample.module.css */
+    .outer_container {
+        font-size: 2rem;
+    }
+    ```
+</CodeBlock>
+
+Notice how we use underscores rather than hypens in our class names. This is because next.js preprocesses the module.css file and returns a json object with the classNames. I can talk more about how it works later since this is probably a lot to take in without a demo.  
+&nbsp;
+
+#### What is SASS?
+&nbsp;
+
+SASS is a CSS preprocessor to help you write CSS a little faster. Regular CSS notation works with SASS files so you can just use regular CSS and learn SASS later. Just note that all our css files are actually [name].module.scss.  
+&nbsp;
+
+
+#### DEMO TIME!
+(just a note for me)

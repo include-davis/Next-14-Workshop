@@ -1,0 +1,40 @@
+$lesson-height: 80px;
+
+.container {
+    position: fixed;
+    top: var(--navbar-height);
+    left: 0;
+    bottom: 0;
+    width: var(--sidebar-width);
+    background-color: var(--dark-background);
+    .lesson_list {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: flex-start;
+
+        .lesson {
+            width: 100%;
+            height: $lesson-height;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+
+            .section_title {
+                font-size: 1rem;
+                color: var(--text-light);
+                padding: 0 var(--small-spacer);
+            }
+        }
+
+        .lesson.active {
+            border-bottom: solid 2px white;
+        }
+
+
+        .lesson:hover {
+            background-color: var(--dark-background-l);
+        }
+    }
+}
+
