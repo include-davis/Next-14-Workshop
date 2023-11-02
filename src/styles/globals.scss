@@ -39,6 +39,8 @@ a, button, h1, h2, h3, h4, p , li{
 
 ol, ul {
     padding-left: 2rem;
+    font-size: 1rem;
+    line-height: 1.5rem;
 }
 
 a {
@@ -66,4 +68,8 @@ h3 {
 }
 h4 {
     font-size: 1.5rem;
+}
+p {
+    font-size: 1.1rem;
+    line-height: 2rem;
 }

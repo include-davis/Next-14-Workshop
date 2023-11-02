@@ -1,5 +1,5 @@
 import styles from '@/styles/content/layout.module.scss';
-import Sidebar from '@/components/sidebar/sidebar';
+import Sidebar from '@/components/content/sidebar/sidebar';
 
 export default function ContentLayout({ children }) {
   return (

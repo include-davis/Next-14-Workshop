@@ -19,7 +19,7 @@ export default function Hero() {
         <h1>WELCOME TO INTRO TO NEXT.JS</h1>
       </div>
       <div className={styles.vert_links}>
-        <Link href="/content">
+        <Link href="/content/section1">
           <div className={styles.large_link}>
             <h3>
               content <BsArrowRight />
