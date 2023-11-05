@@ -26,10 +26,10 @@ export default function Hero() {
             </h3>
           </div>
         </Link>
-        <Link href="/practice">
+        <Link href="/projects">
           <div className={styles.large_link}>
             <h3>
-              practice <BsArrowRight />
+              projects <BsArrowRight />
             </h3>
           </div>
         </Link>
