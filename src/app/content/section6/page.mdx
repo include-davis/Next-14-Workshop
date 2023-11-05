@@ -1,17 +1,127 @@
 import CodeBlock from "@components/content/util/codeBlock";
+import UseStateExample from "@components/content/examples/useStateExample";
+import DropDownMenu from "@components/content/examples/dropDownMenu1";
 
-### Intro to Next.js
+### useState & onClick
+#### useState
+React provides a very convenient state management system that allows our sites to become dynamic. State variables are just like regular variables, except when their value changes, it triggers a re-render of the component. This allows for the page to change without having to refresh the page manually.  
 
-\
-Next.js is a fullstack framework built on top of React.js.
+&nbsp;
+#### onClick
+Rather than having to implement EventListners, we can just use the built in React functions such as ```onClick``` to trigger events when something is clicked. ```onClick``` just takes in a callback function.
 
 <CodeBlock>
     ```jsx
+    'use client';   // needed if useState is being used in the component
+
     import { useState } from "react";
 
-    export default function Test() {
-        return <div>hello there</div>;
+    export default function UseStateExample() {
+        // we provide the state variable name and a setter function name for it
+        const [stateVar, setStateVar] = useState("default value")
+
+        // for this example, let's assume that the state is a boolean (t/f)
+        const toggleState = () => {
+            setStateVar(!stateVar)
+        }
+        return (
+            <div onClick={toggleState}> //when this div is clicked, it will make the text change
+                {(stateVar)? "stateVar is true" : "stateVar is false"}
+            </div>
+        );
     }
     ```
+</CodeBlock>  
+&nbsp;  
+I've replaced the default value to true and run the code below. (along with some basic styling)
 
-</CodeBlock>
+<UseStateExample />  
+&nbsp;  
+Take some time to understand the code. useState is typically paired with some onClick stuff and there's not much other than practice that can help you get comfortable with it. (Here's the fixed code)
+
+<CodeBlock>
+```jsx
+'use client'; // needed if useState is being used in the component
+
+import { useState } from 'react';
+
+export default function UseStateExample() {
+  // we provide the state variable name and a setter function name for it
+  const [stateVar, setStateVar] = useState(true);
+
+  // for this example, let's assume that the state is a boolean (t/f)
+  const toggleState = () => {
+    setStateVar(!stateVar);
+  };
+  return (
+    <div
+      style={{ border: 'solid 2px black', padding: '16px', cursor: 'pointer' }}
+      onClick={toggleState}
+    >
+      {stateVar ? 'stateVar is true' : 'stateVar is false'}
+    </div>
+  );
+}
+```
+</CodeBlock>  
+
+&nbsp;  
+
+***  
+&nbsp;  
+
+Like I said, it'll take practice so let's finish off the DropDownMenu.
+
+<DropDownMenu name={"My Menu"} links={[
+        {
+            text: "home",
+            slug: "/"
+        },
+        {
+            text: "content",
+            slug: "/content"
+        },
+        {
+            text: "projects",
+            slug: "/projects"
+        }
+    ]}/>  
+
+&nbsp;  
+
+1. The example I showed before shows how you could toggle between the up and down arrow. Start with that first. 
+2. To make the dropdown collapse, you have to find a way to target the height and have it transition from height 0 to height auto. You can do this by adding a CSS class conditionally, depending on the state variable. Then, in the CSS file, you can target that when the conditionally CSS class exists, you can change the height.
+<CodeBlock>
+```jsx
+<div className={`${styles.links} ${active ? styles.active : null}`}>
+...
+</div>
+```
+</CodeBlock>  
+<CodeBlock>
+```css
+.links {
+    height: 0;
+}
+
+.links.active {
+    height: auto;
+}
+```
+</CodeBlock>  
+&nbsp;  
+
+3. Unfortunately, this won't create the nice animations. For some reason, CSS doesn't support transitions between a fixed number and the auto keyword. One solution is to set the max-height instead and instead of auto, use ```max-height: something that is larger than the actual max height```. Then, add in ```transition: max-height 0.4s ease-in``` in your .links class and it should work. This isn't a perfect solution, but for now this is what we can work with if we don't want to use javascript.
+<CodeBlock>
+```css
+.links {
+    max-height: 0;
+    transition: max-height 0.4s ease-in;
+}
+
+.links.active {
+    max-height: 300px;
+}
+```
+</CodeBlock> 
+4. To see the downsides, set the max-height to something really high. There should be a delay before the animation starts closing something that we can see.

@@ -1,0 +1,32 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    width: 300px;
+    background-color: rgb(44, 122, 122);
+}
+
+.btn {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding: 8px;
+    border: solid 2px black;
+    cursor: pointer;
+    > h3 {
+        text-align: left;
+    }
+}
+
+.arrow {
+    font-size: 2rem;
+}
+
+.links {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    > a {
+        padding: 16px;
+    }
+}

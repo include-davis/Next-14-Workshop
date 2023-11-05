@@ -5,7 +5,7 @@ import { useState } from 'react';
 import Link from 'next/link';
 
 import styles from '@styles/content/sidebar/sidebar.module.scss';
-import plan from '@data/content/pages.json';
+import plan from '@data/content/content.json';
 
 export default function Sidebar() {
   const [active, setActive] = useState(1);
@@ -22,7 +22,10 @@ export default function Sidebar() {
               }`}
               onClick={() => setActive(index + 1)}
             >
-              <Link href={`/content/section${index + 1}`}>
+              <Link
+                className={styles.link}
+                href={`/content/section${index + 1}`}
+              >
                 <h4 className={styles.section_title}>{section.title}</h4>
               </Link>
             </article>

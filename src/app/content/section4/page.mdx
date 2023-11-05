@@ -1,17 +1,98 @@
 import CodeBlock from "@components/content/util/codeBlock";
+import StudentID from "@components/content/examples/studentID";
+import DropDownMenu from "@components/content/examples/dropDownMenu0";
 
-### Intro to Next.js
-
-\
-Next.js is a fullstack framework built on top of React.js.
-
+### Components
+Components are probably the most important thing to learn from React/Next.js. Components are defined the same way as pages are. They are functions that can take in optional arguments called props.
 <CodeBlock>
     ```jsx
-    import { useState } from "react";
+    import Image from 'next/image';
+    import styles from '@styles/content/examples/studentID.module.scss';
 
-    export default function Test() {
-        return <div>hello there</div>;
+    export default function StudentID(props) {
+        const { name, img, bday } = props;
+        return (
+            <div className={styles.container}>
+                <h1>{name}</h1>
+                <Image src={img} alt={`picture of ${name}`} width="200px" />
+                <p>{bday}</p>
+            </div>
+        );
     }
     ```
-
 </CodeBlock>
+
+The above code defines a component called StudentID which takes in three arguments (name, img, bday) and displays that information in a predefined template.
+
+&nbsp;  
+A shorter way to destructure the props is to just destructure it in the arguments field.
+<CodeBlock>
+    ```jsx
+    import Image from 'next/image';
+    import styles from '@styles/content/examples/studentID.module.scss';
+
+    export default function StudentID({ name, img, bday }) {
+        return (
+            <div className={styles.container}>
+                <h1>{name}</h1>
+                <Image src={img} alt={`picture of ${name}`} width="200px" />
+                <p>{bday}</p>
+            </div>
+        );
+    }
+    ```
+</CodeBlock>
+
+So how do we use this component? Just treat the component like an existing HTML element that takes in props.
+<CodeBlock>
+    ```jsx
+    <StudentID name="Austin Shih" bday="May 7, 2003" img="/content/turtle.png"/>
+    ```
+</CodeBlock>
+<StudentID name={"Austin Shih"} bday={"May 7, 2003"} img="/content/turtle.png"/>
+&nbsp;&nbsp;&nbsp;
+
+***
+
+&nbsp;  
+#### Try it out!
+For the next 3 sections, we will be building out a basic dropdown menu.
+
+<DropDownMenu name="My Menu"/>  
+&nbsp;  
+
+Setup:
+1. Create a file --> /components/projects/dropDownMenu.jsx
+2. Create a file --> /styles/projects/dropDownMenu.module.scss
+3. Link the stylying and have the function return something simple for now.
+4. import this in the projects page and call it in the return function so you can see the component displayed in /projects  
+&nbsp;  
+
+Once you're all set up, follow these steps:
+1. Create a div to contain the dropdown menu
+2. The dropdown menu can be broken up into the button and the links. Create both a button/div for the button part and a div to contain a list of links.
+3. Hardcode the list of links inside your links div.
+<CodeBlock> 
+```jsx
+<Link href="/">home</Link> 
+```
+</CodeBlock>
+4. Have your component take in a prop that changes the large text in the button. I name my prop ```name``` but you can name it whatever you want.
+<CodeBlock> 
+```jsx
+<h3>{name}</h3>
+```
+</CodeBlock>
+5. Add in the up arrow. For the up arrow, use the following lines. react-icons turns them into Components. You can change the size of the arrow by setting the ```font-size``` attribute in CSS. It is also fine to give the arrow a className and style it as if it's text.
+<CodeBlock>
+    ```jsx
+    import { AiFillCaretDown, AiFillCaretUp } from 'react-icons/ai';
+
+    // in html...
+    <AiFillCaretUp />
+    or
+    <AiFillCaretUp className={styles.arrow}/>
+    ```
+</CodeBlock>
+
+6. Once the structure is set up, add in classes where neccesary and style with CSS! I tend to just use flexbox for everything.

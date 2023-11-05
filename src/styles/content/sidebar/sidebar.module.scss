@@ -6,7 +6,7 @@ $lesson-height: 80px;
     left: 0;
     bottom: 0;
     width: var(--sidebar-width);
-    background-color: var(--dark-background);
+    background-color: var(--include-purple);
     .lesson_list {
         display: flex;
         flex-direction: column;
@@ -36,5 +36,12 @@ $lesson-height: 80px;
             background-color: var(--dark-background-l);
         }
     }
+}
+
+.link {
+    display: flex;
+    height: 100%;
+    width: 100%;
+    align-items: center;
 }
 

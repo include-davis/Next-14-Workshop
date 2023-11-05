@@ -1,17 +1,4 @@
 import CodeBlock from "@components/content/util/codeBlock";
 
-### Intro to Next.js
-
-\
-Next.js is a fullstack framework built on top of React.js.
-
-<CodeBlock>
-    ```jsx
-    import { useState } from "react";
-
-    export default function Test() {
-        return <div>hello there</div>;
-    }
-    ```
-
-</CodeBlock>
+### Serverside Rendering
+When a user views a webpage, there are two computers that are involved. The Client and the Server. The Client is the Web Browser essentially and the Server is the computing serving out files that are required to display web pages. React does a lot of processing before a page is ready to display and sometimes that processing can be done by the Server rather than the Client. This means that the Server can send a precomputed portion of the website so the Client doesn't have to do the work. Unfortunately, if we want dynamic stuff to work, that has to be done by the client since that requires javascript running in the background of our Client. That's why when we use ```useState```, we have to specify ```use client```.

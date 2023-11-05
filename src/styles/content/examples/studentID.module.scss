@@ -1,0 +1,10 @@
+.container {
+    border: solid 2px black;
+    border-radius: 8px;
+    padding:var(--spacer);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--small-spacer);
+    width: fit-content;
+}

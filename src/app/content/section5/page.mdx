@@ -1,17 +1,157 @@
 import CodeBlock from "@components/content/util/codeBlock";
+import StudentID from "@components/content/examples/studentID";
+import DropDownMenu from "@components/content/examples/dropDownMenu0";
 
-### Intro to Next.js
-
-\
-Next.js is a fullstack framework built on top of React.js.
+### Mapping - JS map function
+Imagine you are UC Davis and you just received 3000 new students. For some reason, you want to display StudentID previews for each student in a webpage. One solution is to just brute force it.
 
 <CodeBlock>
     ```jsx
-    import { useState } from "react";
+    import StudentID from "@components/content/examples/studentID";
 
-    export default function Test() {
-        return <div>hello there</div>;
+    const students = [
+        {
+            name: "student 1",
+            bday: "...",
+            img: "..."
+        },
+        {
+            name: "student 2",
+            bday: "...",
+            img: "..."
+        },
+        ...
+    ]
+    export default function Students() {
+        return (
+            <div>
+                <StudentID name={students[0].name} bday={students[0].bday} img={students[0].name}/>
+                ...
+                <StudentID name={students[10].name} bday={students[10].bday} img={students[10].name} />
+            </div>
+        );
     }
     ```
-
 </CodeBlock>
+
+This is obviously a terrible solution. You would have to copy and paste so much code. Imagine if StudentIDs got a new look one day and there was an additional field for "college". You would have to go through every line of code you pasted and add in that new prop.
+
+&nbsp;  
+The better way is to use the map function. React interprets lists of HTML objects as if they were just listed out in the HTML structure.
+
+<CodeBlock>
+    ```jsx
+    export default function Example() {
+        return (
+            <div>
+                [<p>text in html</p>, <p>text in html</p>]
+            </div>
+        );
+    }
+
+    // same as above
+    export default function Example() {
+        return (
+            <div>
+                <p>text in html</p>
+                <p>text in html</p>
+            </div>
+        );
+    }
+    ```
+</CodeBlock>
+
+This allows us to use the map function to transform each element in a list into HTML, then pass it into the HTML structure and have them all display as if they were pasted in one by one.
+
+
+<CodeBlock>
+    ```jsx
+    import StudentID from "@components/content/examples/studentID";
+
+    const students = [
+        {
+            name: "student 1",
+            bday: "...",
+            img: "..."
+        },
+        {
+            name: "student 2",
+            bday: "...",
+            img: "..."
+        },
+        ...
+    ]
+    export default function Students() {
+      return (
+        <div>
+          {
+            students.map((student, index) => {
+              return (<StudentID 
+                        key={student.name} // required by Next.js
+                        name={student.name} 
+                        bday={student.bday} 
+                        img={students.img}
+                    />) 
+              }
+            )
+          }
+        </div>
+      );
+    }
+    ```
+</CodeBlock>
+
+Notice that I also included a key prop. When you use the map function in Next.js, you need to include a key or else Next will throw a warning. The key prop has to be unique. This means something like a student_id number would be good, but names are not a good key since not all names are unique.
+
+&nbsp;  
+Let's try running this code with the following list:
+<CodeBlock>
+```json
+[
+    {
+        "name": "Austin Shih",
+        "img": "/examples/turtle.png",
+        "bday": "May 7"
+    },
+    {
+        "name": "Brandon Wong",
+        "img": "/examples/turtle.png",
+        "bday": "May 7"
+    }
+]
+```
+</CodeBlock>
+
+<StudentID name={"Austin Shih"} bday={"May 7"} img="/content/turtle.png"/>
+<StudentID name={"Brandon Wong"} bday={"May 7"} img="/content/turtle.png"/>  
+&nbsp;  
+***  
+&nbsp;  
+
+#### Try it out!
+Now, instead of hardcoding these links, let's use the map function to do it.
+
+<DropDownMenu name="My Menu"/>  
+&nbsp;
+
+1. Add the following code to your app/projects/page.jsx file. (Between the import statement and the function declaration)
+<CodeBlock>
+    ```jsx
+    const dropDownLinks = [
+        {
+            text: "home",
+            slug: "/"
+        },
+        {
+            text: "content",
+            slug: "/content"
+        },
+        {
+            text: "projects",
+            slug: "/projects"
+        }
+    ]
+    ```
+</CodeBlock>
+2. Create a new prop for the linkData and pass it through to the DropDownMenu. Once again, you can name it whatever you want.
+3. Replace the hardcoded ```<Link />``` tags by using the map function.
