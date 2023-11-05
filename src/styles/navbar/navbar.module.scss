@@ -70,6 +70,7 @@
     display: none;
     border: none;
     font-size: 2rem;
+    background: none;
     @include mixins.phone {
         display: flex;
     }
